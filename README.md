@@ -2,6 +2,8 @@
 
 A cross-platform python library for loading XBRL taxonomy in computer memory. Hence, the developers can manipulate all financial data without to learn about the XBRL technology. As easy as handle a object-oriented python class. 
 
+https://marcioalexandre.wordpress.com/projects/xbrl-library/
+
 How to load data:
 You can/have to inform the path and the file name in the library. You can load one or many XBRL instances and its taxonomy, there is no a limit about ammount of files, but the performance can vary.
 
@@ -28,4 +30,6 @@ About Label Object:
         self._role
         self._id
         self._value
+        
+
 
