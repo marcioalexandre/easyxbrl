@@ -35,13 +35,13 @@ class easyxbrl(object):
                         for label in ele._label:
                             if label:
                                 if label._value:
-                                    print "======="+label._value
+                                    print "======= Value: "+label._value
                                 if label._lang:
                                     print "======= Lang: "+label._lang
                                 if label._id:
                                     print "======= Id: "+label._id
                                 if label._label:
-                                    print "======= Label: "+label._label
+                                    print "======= Id(/Label): "+label._label
                                 print "======================================================================"
                     else:
                         print "::::: There is no labels"
