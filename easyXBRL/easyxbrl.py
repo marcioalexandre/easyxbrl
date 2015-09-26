@@ -1,15 +1,32 @@
-__author__ = 'Marcio Alexandre - marcio.alexandre83@gmail.com, 13/09/2015'
+'''
+Copyright 2015 Marcio Alexandre Pereira da Silva
 
-''' #if you want to load the pyc file (compiled)
-import imp
-Element  = imp.load_compiled("Element", "Element.pyc")
- '''
-import Element
+This file is part of easyXBRL.
+
+easyXBRL is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+easyXBRL is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+
+@author: Marcio A. P. da Silva
+@since: September 22nd, 2015
+@Email: marcio.alexandre83@gmail.com
+'''
+
+import easyXBRL.classes.Element as el
 
 class easyxbrl(object):
 
     def get_printElements(self, arg):
-        ele = Element.Element()
+        ele = el.Element()
         i = 0
         if (len(arg) > 0):
             for listele in arg:
@@ -67,8 +84,28 @@ class easyxbrl(object):
         else:
             pass
 
-
     def get_allElements(self,listInstanceFile,listLabelFile,option):
         # option = "yes", it's gonna return elements with labels; = "no", without labels.
-        e = Element.Element()
+        e = el.Element()
         return e.get_allElementsByFiles(listInstanceFile,listLabelFile,option)
+
+    def print_copyright(self):
+		copyright = "\n\n" \
+                    "==========================================================\n" \
+                    "Copyright 2015 Marcio Alexandre Pereira da Silva \n\n" \
+				    "This file is part of easyXBRL.\n\n" \
+                    "easyXBRL is free software: you can redistribute it and/or modify\n" \
+                    "it under the terms of the GNU General Public License as published by\n" \
+                    "the Free Software Foundation, either version 3 of the License, or\n" \
+                    "(at your option) any later version.\n\n" \
+                    "easyXBRL is distributed in the hope that it will be useful,\n" \
+                    "but WITHOUT ANY WARRANTY; without even the implied warranty of\n" \
+                    "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n" \
+                    "GNU General Public License for more details.\n\n" \
+                    "You should have received a copy of the GNU General Public License\n" \
+                    "along with Foobar.  If not, see <http://www.gnu.org/licenses/>.\n\n" \
+                    "@author: Marcio A. P. da Silva \n" \
+                    "@since: September 22nd, 2015\n" \
+                    "@Email: marcio.alexandre83@gmail.com\n" \
+                    "==========================================================\n\n"
+		return copyright;
