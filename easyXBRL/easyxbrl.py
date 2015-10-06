@@ -131,7 +131,7 @@ class easyxbrl(object):
                     "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n" \
                     "GNU General Public License for more details.\n\n" \
                     "You should have received a copy of the GNU General Public License\n" \
-                    "along with Foobar.  If not, see <http://www.gnu.org/licenses/>.\n\n" \
+                    "along with easyXBRL.  If not, see <http://www.gnu.org/licenses/>.\n\n" \
                     "@author: Marcio A. P. da Silva \n" \
                     "@since: September 22nd, 2015\n" \
                     "@Email: marcio.alexandre83@gmail.com\n" \
