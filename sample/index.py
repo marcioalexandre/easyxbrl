@@ -29,21 +29,22 @@ from easyXBRL import EasyXbrl
 ''' These financial files (form Facebook) is available on SEC website
 you must create a list is which has to contain the name of XBRL instances,
 you'd like to handle so '''
+
 instances = []
-instances.append("../xbrlfiles/fb/fb-20130331.xml")
-#instances.append("../xbrlfiles/fb/fb-20130630.xml")
-#instances.append("../xbrlfiles/fb/fb-20130930.xml")
-#instances.append("../xbrlfiles/fb/fb-20131231.xml")
+instances.append("../../../../xbrlfiles/fb/fb-20130331.xml")
+instances.append("../../../xbrlfiles/fb/fb-20130630.xml")
+instances.append("../../../xbrlfiles/fb/fb-20130930.xml")
+instances.append("../../../xbrlfiles/fb/fb-20131231.xml")
 
 ''' you must create a list in which has to contain the name of XBRL label files you'd
 like to handle so you also must inform every label file is linked to xbrl instance
 (instances = []), in the same sequence'''
 
 labels = []
-labels.append("../xbrlfiles/fb/fb-20130331_lab.xml")
-#labels.append("../xbrlfiles/fb/fb-20130630_lab.xml")
-#labels.append("../xbrlfiles/fb/fb-20130930_lab.xml")
-#labels.append("../xbrlfiles/fb/fb-20131231_lab.xml")
+labels.append("../../../xbrlfiles/fb/fb-20130331_lab.xml")
+labels.append("../../../xbrlfiles/fb/fb-20130630_lab.xml")
+labels.append("../../../xbrlfiles/fb/fb-20130930_lab.xml")
+labels.append("../../../xbrlfiles/fb/fb-20131231_lab.xml")
 start = time.time()
 xbrlInstanceList = []
 ex = EasyXbrl.easyxbrl()
@@ -57,7 +58,7 @@ try:
                                           "yes") #[yes] with linkbases, [no] without linkbases
 
 except Exception as e:
-    print "[easyxbrl][sample][Index.py] error({0})".format(e.message)
+    print "[easyxbrl][sample][Index.py] error({0})".format(e.args)
 end = time.time()
 # for trying, easyXBRL has a printing method, which you can use:
 ex.getPrintElements(xbrlInstanceList)
