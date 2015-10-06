@@ -62,7 +62,7 @@ end = time.time()
 # for trying, easyXBRL has a printing method, which you can use:
 ex.getPrintElements(xbrlInstanceList)
 print "Performance time (seconds): "+str(end-start)
-#print ex.printCopyright()
+print ex.printCopyright()
 
 
 
