@@ -14,82 +14,110 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
-
-@author: Marcio A. P. da Silva
-@since: September 22nd, 2015
-@Email: marcio.alexandre83@gmail.com
+along with easyXBRL.  If not, see <http://www.gnu.org/licenses/>.
 '''
+__author__ = 'Marcio Alexandre P. da Silva - marcio.alexandre83@gmail.com'
+__since__ = 'Sep22nd, 2015'
 
-import easyXBRL.classes.Element as el
+import time
+from easyXBRL.taxonomy.instance import XbrlInstance,XbrlElement
+from easyXBRL.taxonomy.linkbase import Label
 
 class easyxbrl(object):
 
-    def get_printElements(self, arg):
-        ele = el.Element()
+    def getPrintElements(self, instanceList):
         i = 0
-        if (len(arg) > 0):
-            for listele in arg:
-                for ele in listele:
-                    try:
-                        print ""
-                        if ele._position:
-                            print "Element number: ["+str(ele._position)+"]"
-                        if (ele._filename):
-                            print "File name:      ["+ele._filename+"]"
-                        if (ele._xml_line):
-                            print "Xml Line:       ["+str(ele._xml_line)+"]"
-                        if ele._company:
-                            print "Company:        ["+ele._company+"]"
-                        if ele._name:
-                            print "name:           ["+ele._name+"]"
-                        if ele._value:
-                            print "value:          ["+ele._value+"]"
-                        if ele._unit_ref:
-                            print "Unit:           ["+ele._unit_ref+"]"
-                        if ele._context_ref:
-                            print "Context:        ["+ele._context_ref+"]"
-                        if ele._id:
-                            print "Id:             ["+ele._id+"]"
-                        if ele._decimals:
-                            print "Decimals: ["+ele._decimals+"]"
+        print("Len:"+str(len(instanceList)))
+        print str(instanceList)
+        if (len(instanceList) > 0):
+            for xbrlInstance in instanceList:
+                if xbrlInstance._id:
+                    print "Instance Id: ["+str(xbrlInstance._id)+"]"
+                if xbrlInstance._company:
+                    print "Instance company: ["+str(xbrlInstance._company)+"]"
+                if xbrlInstance._filename:
+                    print "Instance filename: ["+str(xbrlInstance._filename)+"]"
+                print "Element number: ["+str(len(xbrlInstance._elementList))+"]"
+                if (len(xbrlInstance._elementList)>0):
+                    ele = XbrlElement
+                    for ele in xbrlInstance._elementList:
                         try:
-                            if (ele._label):
-                                print "Label(s) {"
-                                for label in ele._label:
-                                    if label:
-                                        if label._type:
-                                            print "  ===== Type :    ["+label._type+"]"
-                                        if label._value:
-                                            print "  ===== Value:    ["+label._value+"]"
-                                        if label._lang:
-                                            print "  ===== Lang:     ["+label._lang+"]"
-                                        if label._id:
-                                            print "  ===== Id:       ["+label._id+"]"
-                                        if label._label:
-                                            print "  ===== label/id: ["+label._label+"]"
-                                        if label._role:
-                                            print "  ===== Role:     ["+label._role+"]"
-                                        print "  ==============================="
-                            else:
-                                print "  ===== [No labels]"
-                            print "} //label(s)"
-                        except ValueError:
-                            print("This element has no labels")
-                    except Exception:
-                        print("This element is been represented with a error in XBRL file.")
-                        print ("If you are sure about the correct XBRL representation (in XBRL file),"
-                               "Probably it's been represented in different XBRL standard. "
-                               "In this case, please, send me a email: marcio.alexandre83@gmail.com. (Marcio)")
+                            print ""
+                            if ele._position:
+                                print "Element number: ["+str(ele._position)+"]"
+                            if (ele._xml_line):
+                                print "Xml Line:       ["+str(ele._xml_line)+"]"
+                            if ele._name:
+                                print "name:           ["+ele._name+"]"
+                            if ele._value:
+                                print "value:          ["+ele._value+"]"
+                            if ele._unit_ref:
+                                print "Unit:           ["+ele._unit_ref+"]"
+                            if ele._context_ref:
+                                print "Context:        ["+ele._context_ref+"]"
+                            if ele._id:
+                                print "Id:             ["+ele._id+"]"
+                            if ele._decimals:
+                                print "Decimals: ["+ele._decimals+"]"
+                            print "Label(s) {"
+                            try:
+                                if (ele._label):
+                                    label = Label
+                                    for label in ele._label:
+                                        if label:
+                                            if label._type:
+                                                print "  ===== Type :    ["+label._type+"]"
+                                            if label._value:
+                                                print "  ===== Value:    ["+label._value+"]"
+                                            if label._lang:
+                                                print "  ===== Lang:     ["+label._lang+"]"
+                                            if label._id:
+                                                print "  ===== Id:       ["+label._id+"]"
+                                            if label._label:
+                                                print "  ===== label/id: ["+label._label+"]"
+                                            if label._role:
+                                                print "  ===== Role:     ["+label._role+"]"
+                                            print "  ==============================="
+                                else:
+                                    print "  ===== [No labels]"
+                                    print "  ===== [Warning: check the method: [index.py]{[Line 53: ex.getXbrlInstanceList(,,,,,,'no')]}]"
+                                    print "  ===== [if the last parameter is 'yes', this xbrl element has no label]"
+                                print "} //label(s)"
+                            except ValueError:
+                                print("This element has no labels")
+                        except Exception as e:
+                            print("This element is been represented with a error in XBRL file:"+e.message)
+                            print ("If you are sure about the correct XBRL representation (in XBRL file),\n"
+                                   "Probably it's been represented in different XBRL standard. \n"
+                                   "In this case, please, send me a email: marcio.alexandre83@gmail.com. (Marcio)\n")
         else:
             pass
 
-    def get_allElements(self,listInstanceFile,listLabelFile,option):
-        # option = "yes", it's gonna return elements with labels; = "no", without labels.
-        e = el.Element()
-        return e.get_allElementsByFiles(listInstanceFile,listLabelFile,option)
+    def getXbrlInstanceList(self,instanceNameList,
+                        labelNameList,
+                        calculationNameList,
+                        referenceNameList,
+                        presentationNameList,
+                        definitionNameList,
+                        option): # option = "yes", it's gonna return elements with labels; = "no", without labels.
+        xbrlInstanceList = []
+        i = 0
+        for instanceName in instanceNameList:
+            xbrlInstance = XbrlInstance.XbrlInstance()
+            xi = XbrlInstance
+            xi = xbrlInstance.getInstanceByFile(instanceName,
+                                                          labelNameList[i],
+                                                          calculationNameList,
+                                                          referenceNameList,
+                                                          presentationNameList,
+                                                          definitionNameList,
+                                                          i,
+                                                          option)
+            xbrlInstanceList.append(xi(xi._id,xi._company,xi._filename,xi._elementList))
+            i += 1
+        return xbrlInstanceList
 
-    def print_copyright(self):
+    def printCopyright(self):
 		copyright = "\n\n" \
                     "==========================================================\n" \
                     "Copyright 2015 Marcio Alexandre Pereira da Silva \n\n" \
